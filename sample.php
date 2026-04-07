@@ -55,3 +55,50 @@ for($i =0; $i<15; $i++){
     echo $i."\n";
 }
 ?>
+
+<?php
+class Company{
+    protected $name;
+    protected $address;
+    protected $tel;
+
+    public function __construct($name,$address,$tel){
+        $this->name =$name;
+        $this->address =$address;
+        $this->tel =$tel;
+    }
+
+    public function displayCompany(){
+        echo "会社名:{$this->name}\n";
+        echo "住所:{$this->address}\n";
+        echo "電話番号:{$this->tel}\n";
+    }
+}
+class Department extends Company{
+    private $deptName;
+    private $manager;
+
+    public function __construct($name,$address,$tel,$deptName,$manager){
+        parent::__construct($name,$address,$tel);
+        $this->deptName =$deptName;
+        $this->manager =$manager;
+    }
+
+    public function displayDepartment(){
+        echo "部署名:{$this->deptName}\n";
+        echo "部長:{$this->manager}\n";
+    }
+}
+
+$a = new Department("サンプルA","市ヶ谷","080-xxxx-xxxx","人事","高田");
+$b = new Department("サンプルB","池袋","090-xxxx-xxxx","総務","田中");
+$c = new Department("サンプルC","新宿","070-xxxx-xxxx","営業","高橋");
+
+$list = [$a,$b,$c];
+
+foreach($list as $company){
+    $company->displayCompany();
+    $company->displayDepartment();
+    echo "\n";
+}
+?>
